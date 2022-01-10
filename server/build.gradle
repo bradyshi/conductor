@@ -16,6 +16,9 @@ plugins {
     id 'org.springframework.boot'
 }
 
+configurations.all {
+    resolutionStrategy.force 'javax.servlet:javax.servlet-api:4.0.1'
+}
 dependencies {
 
     implementation project(':conductor-rest')
@@ -25,8 +28,8 @@ dependencies {
     implementation project(':conductor-cassandra-persistence')
     implementation project(':conductor-postgres-persistence')
     implementation project(':conductor-mysql-persistence')
-    implementation project(':conductor-es6-persistence')
-    implementation(project(path: ':conductor-es7-persistence', configuration: 'shadow'))
+    //implementation project(':conductor-es6-persistence')
+    implementation(project(path: ':conductor-es7-persistence'))
     implementation project(':conductor-grpc-server')
     implementation project(':conductor-redis-lock')
 
@@ -54,6 +57,7 @@ dependencies {
     testImplementation "com.google.protobuf:protobuf-java:${revProtoBuf}"
     testImplementation "io.grpc:grpc-protobuf:${revGrpc}"
     testImplementation "io.grpc:grpc-stub:${revGrpc}"
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
 }
 
 jar {

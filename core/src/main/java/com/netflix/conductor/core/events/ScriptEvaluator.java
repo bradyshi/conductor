@@ -16,6 +16,9 @@ import javax.script.Bindings;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class ScriptEvaluator {
 
@@ -44,7 +47,16 @@ public class ScriptEvaluator {
      */
     public static Object eval(String script, Object input) throws ScriptException {
         Bindings bindings = engine.createBindings();
-        bindings.put("$", input);
+        if(input instanceof HashMap) {
+            Map map = (HashMap)input;
+            Iterator iterator = map.keySet().iterator();
+            while(iterator.hasNext()) {
+                String key = (String)iterator.next();
+                bindings.put(key, map.get(key));
+            }
+        } else {
+            bindings.put("$", input);
+        }
         return engine.eval(script, bindings);
     }
 

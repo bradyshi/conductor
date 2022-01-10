@@ -14,14 +14,19 @@
 spring.application.name=conductor
 springdoc.api-docs.path=/api-docs
 
-conductor.grpc-server.enabled=false
+conductor.db.type=dynomite
 
-# Database persistence type.
-conductor.db.type=mysql
+conductor.indexing.enabled=false
 
-spring.datasource.url=jdbc:mysql://localhost:3306/conductor
-spring.datasource.username=root
-spring.datasource.password=123456
+#Dynomite Cluster details.
+#format is host:port:rack separated by semicolon
+conductor.redis.hosts=host1:port:rack;host2:port:rack:host3:port:rack
+
+#namespace for the keys stored in Dynomite/Redis
+conductor.redis.workflowNamespacePrefix=
+
+#namespace prefix for the dyno queues
+conductor.redis.queueNamespacePrefix=
 
 #no. of threads allocated to dyno-queues
 queues.dynomite.threads=10
@@ -30,20 +35,20 @@ queues.dynomite.threads=10
 conductor.workflow-repair-service.enabled=true
 
 #non-quorum port used to connect to local redis.  Used by dyno-queues
-#conductor.redis.queuesNonQuorumPort=22122
+conductor.redis.queuesNonQuorumPort=22122
 
 # For a single node dynomite or redis server, make sure the value below is set to same as rack specified in the "workflow.dynomite.cluster.hosts" property.
-#conductor.redis.availabilityZone=us-east-1c
+conductor.redis.availabilityZone=us-east-1c
 
-# Transport address to elasticsearch
-conductor.elasticsearch.url=http://localhost:9200/
+#Transport address to elasticsearch
+conductor.elasticsearch.url=http://120.79.129.84:9300
 
-# Name of the elasticsearch cluster
+#Name of the elasticsearch cluster
 conductor.elasticsearch.indexName=conductor
 
 #Elasticsearch major release version.
-#conductor.elasticsearch.version=6
-conductor.elasticsearch.version=7
+conductor.elasticsearch.version=6
+#conductor.elasticsearch.version=7
 
 # Default event queue type to listen on for wait task
 conductor.default-event-queue.type=sqs
@@ -102,6 +107,3 @@ conductor.workflow-execution-lock.type=noop_lock
 # Additional modules for metrics collection exposed to Datadog (optional)
 management.metrics.export.datadog.enabled=${conductor.metrics-datadog.enabled:false}
 management.metrics.export.datadog.api-key=${conductor.metrics-datadog.api-key:}
-
-# Load sample kitchen sink workflow
-loadSample=true

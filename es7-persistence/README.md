@@ -55,7 +55,7 @@ In file:
 - /test-harness/src/test/java/com/netflix/conductor/test/integration/AbstractEndToEndTest.java
 
 * change conductor.elasticsearch.version from 6 to 7
-* change DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch-oss").withTag("6.8.12") to DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch-oss").withTag("7.6.2")
+* change DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch-oss").withTag("7.6.2") to DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch-oss").withTag("7.6.2")
 
 
 ## Usage

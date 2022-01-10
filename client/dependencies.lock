@@ -655,8 +655,8 @@
                 "com.google.inject:guice"
             ]
         },
-        "javax.servlet:servlet-api": {
-            "locked": "2.5",
+        "javax.servlet:javax.servlet-api": {
+            "locked": "4.0.1",
             "transitive": [
                 "com.netflix.netflix-commons:netflix-infix"
             ]
@@ -1867,8 +1867,8 @@
                 "com.google.inject:guice"
             ]
         },
-        "javax.servlet:servlet-api": {
-            "locked": "2.5",
+        "javax.servlet:javax.servlet-api": {
+            "locked": "4.0.1",
             "transitive": [
                 "com.netflix.netflix-commons:netflix-infix"
             ]
